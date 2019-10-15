@@ -1,33 +1,55 @@
 using System;
+using System.Collections.Generic;
 using burger_api.Models;
+using burger_api.Repositories;
 
 namespace burger_api.Services
 {
 	public class MenuService
 	{
-		internal object Get()
+		private readonly MenuRepository _repo;
+		public MenuService(MenuRepository repo)
 		{
-			throw new NotImplementedException();
+			_repo = repo;
+		}
+		public IEnumerable<MenuItem> Get()
+		{
+			return _repo.Get();
 		}
 
-		internal object Get(string id)
+		public MenuItem Get(string id)
 		{
-			throw new NotImplementedException();
+			MenuItem exists = _repo.Get(id);
+			if (exists == null) { throw new Exception("BadID"); }
+			return exists;
 		}
 
-		internal object Create(MenuItem newItem)
+		public MenuItem Create(MenuItem newItem)
 		{
-			throw new NotImplementedException();
+			MenuItem exists = _repo.Exists("name", newItem.Name);
+			if (exists != null) { throw new Exception("We already got that bruh."); }
+			newItem.Id = Guid.NewGuid().ToString();
+			_repo.Create(newItem);
+			return newItem;
 		}
 
-		internal object Edit(MenuItem itemData)
+		public MenuItem Edit(MenuItem itemData)
 		{
-			throw new NotImplementedException();
+			MenuItem item = _repo.Get(itemData.Id);
+			if (item == null) { throw new Exception("Invalid Id"); }
+			item.Name = itemData.Name;
+			item.Description = itemData.Description;
+			item.Price = itemData.Price;
+			_repo.Edit(itemData);
+			return itemData;
 		}
 
-		internal object Delete(string id)
+		public string Delete(string id)
 		{
-			throw new NotImplementedException();
+			MenuItem item = _repo.Get(id);
+			if (item == null) { throw new Exception("Bad ID"); }
+			_repo.Remove(id);
+			return "successfully deleted";
 		}
 	}
 }
