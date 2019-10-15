@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using bergur_api.Interfaces;
+using burger_api.Interfaces;
 
-namespace bergur_api.Models
+namespace burger_api.Models
 {
-	public class Bergur : IItem
+	public class Burger : IItem
 	{
 
 		[Required]

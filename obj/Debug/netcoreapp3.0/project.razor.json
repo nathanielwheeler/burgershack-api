@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/nathanielwheeler/src/codeworks/cs/challenges/bergur-api/bergur-api.csproj",
+  "FilePath": "/Users/nathanielwheeler/src/codeworks/cs/api/burger-api/bergur-api.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -14341,7 +14341,7 @@
     ],
     "CSharpLanguageVersion": 800
   },
-  "RootNamespace": "bergur_api",
+  "RootNamespace": "burger_api",
   "Documents": [],
   "SerializationFormat": "0.2"
 }

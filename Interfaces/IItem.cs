@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace bergur_api.Interfaces
+namespace burger_api.Interfaces
 {
 	public interface IItem
 	{

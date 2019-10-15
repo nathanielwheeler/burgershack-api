@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <RootNamespace>bergur_api</RootNamespace>
+    <RootNamespace>burger_api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
