@@ -4,7 +4,7 @@ using burger_api.Interfaces;
 
 namespace burger_api.Models
 {
-	public class Burger : IItem
+	public class MenuItem : IItem
 	{
 
 		[Required]
