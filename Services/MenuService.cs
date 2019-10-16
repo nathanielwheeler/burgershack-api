@@ -26,8 +26,6 @@ namespace burger_api.Services
 
 		public MenuItem Create(MenuItem newItem)
 		{
-			MenuItem exists = _repo.Exists("name", newItem.Name);
-			if (exists != null) { throw new Exception("We already got that bruh."); }
 			newItem.Id = Guid.NewGuid().ToString();
 			_repo.Create(newItem);
 			return newItem;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using burger_api.Models;
+using Dapper;
 
 namespace burger_api.Repositories
 {
@@ -14,34 +15,44 @@ namespace burger_api.Repositories
 			_db = db;
 		}
 
-		internal IEnumerable<MenuItem> Get()
+		public IEnumerable<MenuItem> Get()
 		{
-			throw new NotImplementedException();
+			string sql = "SELECT * FROM menu";
+			return _db.Query<MenuItem>(sql);
 		}
 
-		internal MenuItem Get(string id)
+		public MenuItem Get(string id)
 		{
-			throw new NotImplementedException();
+			string sql = "SELECT * FROM menu WHERE id = @id";
+			return _db.QueryFirstOrDefault<MenuItem>(sql, new { id });
 		}
 
-		internal MenuItem Exists(string v, string name)
+		public void Create(MenuItem newItem)
 		{
-			throw new NotImplementedException();
+			string sql = @"
+			INSERT INTO menu
+			(id, name, price, description)
+			VALUES
+			(@Id, @Name, @Price, @Description)";
+			_db.Execute(sql, newItem);
 		}
 
-		internal void Create(MenuItem newItem)
+		public void Edit(MenuItem itemData)
 		{
-			throw new NotImplementedException();
+			string sql = @"
+			UPDATE menu
+			SET
+				name = @Name,
+				price = @Price,
+				description = @Description
+			WHERE id = @Id";
+			_db.Execute(sql, itemData);
 		}
 
-		internal void Edit(MenuItem itemData)
+		public void Remove(string id)
 		{
-			throw new NotImplementedException();
-		}
-
-		internal void Remove(string id)
-		{
-			throw new NotImplementedException();
+			string sql = @"DELETE FROM menu WHERE id = @id";
+			_db.Execute(sql, new { id });
 		}
 	}
 }
