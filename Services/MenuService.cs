@@ -40,8 +40,8 @@ namespace burger_api.Services
 			item.Name = itemData.Name;
 			item.Description = itemData.Description;
 			item.Price = itemData.Price;
-			_repo.Edit(itemData);
-			return itemData;
+			_repo.Edit(item); //NOTE Make sure you don't put in the wrong item
+			return item;
 		}
 
 		public string Delete(string id)
