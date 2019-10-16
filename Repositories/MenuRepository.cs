@@ -17,20 +17,20 @@ namespace burger_api.Repositories
 
 		public IEnumerable<MenuItem> Get()
 		{
-			string sql = "SELECT * FROM menu";
+			string sql = "SELECT * FROM burgershackMenu";
 			return _db.Query<MenuItem>(sql);
 		}
 
 		public MenuItem Get(string id)
 		{
-			string sql = "SELECT * FROM menu WHERE id = @id";
+			string sql = "SELECT * FROM burgershackMenu WHERE id = @id";
 			return _db.QueryFirstOrDefault<MenuItem>(sql, new { id });
 		}
 
 		public void Create(MenuItem newItem)
 		{
 			string sql = @"
-			INSERT INTO menu
+			INSERT INTO burgershackMenu
 			(id, name, price, description)
 			VALUES
 			(@Id, @Name, @Price, @Description)";
@@ -40,7 +40,7 @@ namespace burger_api.Repositories
 		public void Edit(MenuItem itemData)
 		{
 			string sql = @"
-			UPDATE menu
+			UPDATE burgershackMenu
 			SET
 				name = @Name,
 				price = @Price,
@@ -51,7 +51,7 @@ namespace burger_api.Repositories
 
 		public void Remove(string id)
 		{
-			string sql = @"DELETE FROM menu WHERE id = @id";
+			string sql = @"DELETE FROM burgershackMenu WHERE id = @id";
 			_db.Execute(sql, new { id });
 		}
 	}
